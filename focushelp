@@ -1,0 +1,37 @@
+//////////////////////////////////////
+TODO
+    - faire un lfo non basé sur anime.js
+    - gerer la centralisation des controllablesParams et controllers
+    - controlleur en cercle
+    - readapter synthTest avec le system de modules et panels
+    - creer une class Visualiser avec des entrées de valeurs et sortie en fonction, un monito 
+
+ouverture d'une fenetre au click
+draggable ?
+bouton + - pour fenetre
+//////////////////////////////////////
+INTERFACES.JS
+makeAsMouseReactif(elt)
+styleChange(elt, attribut)
+displayPopup(elt)
+
+makeAsController(obj)
+    obj.isController = true
+    obj.controlOutputs = [] //{target, param}
+
+    obj.addControlOutput(target, param)
+        if !target.isControllable 
+            -> makeAsControllable(target)
+        target.addControlInput
+    obj.defaultControlFunction(value)
+    obj.describe()
+
+makeAsControllable(obj)
+    obj.isControllable = true
+    obj.controllablesParams = [] //param
+    obj.controlInputs = [] //{input, param}
+
+    obj.addControllableParam(param)
+    obj.addControlInput(input, param)
+    obj.updateControlInputs()
+    obj.describe()

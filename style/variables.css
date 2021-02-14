@@ -1,0 +1,34 @@
+body {
+    --orange: rgb(185, 108, 20);
+    --green: rgb(81, 151, 24);
+    /* BASE STYLE */   
+    --color1: rgb(53, 45, 45);
+    --color2: #1d1919;
+    --colorHover: #523e3e;
+    --textColor: rgb(179, 177, 177);
+
+    --border: 1px outset grey;
+    --radius: 10px;
+
+    /* GREEN STYLE */
+/*
+    --color1: #221d1d
+    --color2: rgb(53, 45, 45);
+    --colorHover: #1a3f1a;
+    --textColor: rgb(154, 218, 157);
+
+    --border: 2px outset rgb(81, 151, 24);
+    --radius: 10px;
+*/
+    /* BLUE STYLE */
+/*
+    --color1: rgb(69, 97, 100, 0.2);
+    --color2: rgb(34, 28, 28);
+    --colorHover: #1a3f1a;
+    --textColor: rgb(154, 218, 157);
+
+    --border: 2px outset rgb(79, 144, 153);
+    --radius: 10px;
+*/
+    /* Austere */
+}

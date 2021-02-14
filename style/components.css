@@ -1,0 +1,70 @@
+.btnTitle {
+    /* position: relative; */
+    /* top: 2px; */
+    height: 20px;
+    background-color: var(--color2);
+    color: var(--textColor);
+    /* border: var(--border); */
+    border-radius: var(--radius);
+
+    margin: 2px;
+
+}
+.roundButton {
+    /* position: relative; */
+    /* width: 20px; */
+    /* height: 20px; */
+    width: 15px;
+    height: 15px;
+    background-color: var(--color2);
+    color: var(--textColor);
+    border-radius: var(--radius);
+
+    padding: 0px;
+    margin: 2px;
+}
+.roundButton2 {
+    /* position: relative; */
+    /* top: 2px; */
+    width: 18px;
+    background-color: var(--color2);
+    color: var(--textColor);
+    /* border: var(--border); */
+    border-radius: var(--radius);
+
+    margin: 2px;
+}
+.btnOn {
+    width: 10px;
+    position: absolute;
+    right: 0;
+    border-radius: 10px;
+
+    color: transparent;
+    background-color: red;
+}
+.btnSynth, .btnPlay {
+    background-color: #221d1d;
+    border-radius: 8px;
+}
+.btnDisplay {
+    width: 100px;
+}
+.btnDisplay:hover {
+    background-color: var(--colorHover);
+}
+.flatButton {
+    width: 10px;
+    height: 10px;
+
+}
+.inOut {
+    position: relative;
+    top: 2px;
+    width: 20px;
+    height: 20px;  
+    border-radius: var(--radius);
+}
+canvas { 
+    border: 1px solid white;
+} 
