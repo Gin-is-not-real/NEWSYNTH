@@ -13,13 +13,14 @@ function loadScript(src) {
 }
 
 loadScript("js/tools/interfaces.js")
-.then(test2 => loadScript("js/TESTS/test2.js", test2))
+// .then(test2 => loadScript("js/TESTS/test2.js", test2))
 .then(anime => loadScript("js/tools/anime.min.js", anime))
+.then(oscilloscope => loadScript("js/TESTS/oscilloscope.js", oscilloscope))
 .then(synth => loadScript("js/synthParts/Synth.js", synth))
 .then(modules => loadScript("js/synthParts/Modules.js", modules))
 .then(modulePanel => loadScript("js/synthParts/ModulePanel.js", modulePanel))
 .then(domFunctions => loadScript("js/tools/domFunctions.js", domFunctions))
 .then(components => loadScript("js/synthParts/components.js", components))
 .then(scripts => loadScript("js/scripts/main.js", scripts))
-.then(tests => loadScript("js/TESTS/tests.js", tests))
+// .then(tests => loadScript("js/TESTS/tests.js", tests))
 .catch(alert);

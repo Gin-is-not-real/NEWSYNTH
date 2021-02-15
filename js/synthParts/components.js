@@ -449,3 +449,4 @@ function drawOscilloscope(screen, analyser) {
     ctx.stroke();
     //
 }
+

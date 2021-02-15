@@ -406,10 +406,6 @@ class Lfo extends Module {
                 module.targetsList.forEach(e => {
                     drawTimeAndY(module.monitor, e.target[e.targetedParam]);
                 })
-                // module.anim.animations[0].tweens[0].from.numbers[0] = parseInt(module.in.value);
-                // module.anim.animations[0].tweens[0].to.numbers[0] = parseInt(module.in.value) + module.depth;
-                // module.anim.duration = module.duration;
-                // module.timeCounter.value ++;
                 if(module.timeCounter.value === module.duration) {
                     module.timeCounter.value = 0;
                     module.monitor.drawScreen();
@@ -452,34 +448,25 @@ class AnalyserModule extends NodeModule {
         dest.enteringModule = this.audioOutput;
     }
 }
-class AnalyserModule2 extends NodeModule {
-    enteringModule;
+class OscilloscopeModule extends MonitorModule {
+    enteringNode;
+    
     constructor(name, synth, enteringNode) {
         super(name, synth);
         this.designation = "AnalyserModule";
         this.enteringNode = enteringNode != undefined ? enteringNode : undefined;
+        this.core = this.createCore();
     }
     createCore() {
         let core = [];
-        let analyser = createAnalyserNode1();
+        let oscilloscope = createOscilloscope(this, this.enteringNode);
 
-        core.push(analyser);
-        this.audioInput = analyser;
-        this.audioOutput = analyser;
+        core.push(oscilloscope);
+        this.audioInput = oscilloscope;
+        this.audioOutput = oscilloscope;
         return core;
     }
-    // createCore() {
-    //     let core = [];
-    //     let analyser = audioCtx.createAnalyser();
-    //     analyser.fftSize = 256;
-    //     analyser.buffer = analyser.frequencyBinCount;
-    //     analyser.tabData = new Uint8Array(analyser.buffer);
 
-    //     core.push(analyser);
-    //     this.audioInput = analyser;
-    //     this.audioOutput = analyser;
-    //     return core;
-    // }
     initConnections() {
         let dest = enteringNode.destination;
         this.enteringNode.disconnect();
@@ -489,6 +476,7 @@ class AnalyserModule2 extends NodeModule {
         this.audioOutput.connect(dest);
         dest.enteringModule = this.audioOutput;
     }
+
     initAnalyser() {
 
     }

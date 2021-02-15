@@ -629,8 +629,8 @@ class VisualiserPanel2 extends ModulePanel {
         this.loadModulePanel(tab, domPanel);
     }
 }
-class MonitorPanel extends VisualiserPanel {
-    designation = "MonitorPanel";
+class OscilloscopePanel extends VisualiserPanel {
+    designation = "OscilloscopePanel";
     screen;
     constructor(module, sections, domPanel) {
         super(module, sections, domPanel);
@@ -639,6 +639,10 @@ class MonitorPanel extends VisualiserPanel {
     }
     initModulePanel(domPanel) {
         let divTitle = roundTitleDiv(this.module);
+
+        // let divPlay = this.addNewDiv("div_play");
+        // let btnPlay = this.addNewComponent(oscilloscopeNewBtnPlay(this.module));
+        // divPlay.appendChild(btnPlay);
         
         let divScreen = this.addNewDiv("div_screen");
         let screen = this.addNewComponent(monitorNewScreen(this.module));
@@ -646,6 +650,7 @@ class MonitorPanel extends VisualiserPanel {
 
         let tab = [
             divTitle,
+            // divPlay,
             divScreen
         ];
 

@@ -1,21 +1,21 @@
-let devDiv = document.querySelector(".dev");
-let btnTest = document.createElement("button");
-btnTest.textContent = "TEST";
-devDiv.prepend(btnTest);
+// let devDiv = document.querySelector(".dev");
+// // let btnTest = document.createElement("button");
+// // btnTest.textContent = "TEST";
+// // // devDiv.prepend(btnTest);
 
-let btnTest2 = document.createElement("button");
-btnTest2.textContent = "TEST2";
-devDiv.prepend(btnTest2);
+// // let btnTest2 = document.createElement("button");
+// // btnTest2.textContent = "TEST2";
+// // devDiv.prepend(btnTest2);
 
-let btnTest3 = document.createElement("button");
-btnTest3.textContent = "TEST3";
-devDiv.appendChild(btnTest3);
+// let btnTest3 = document.createElement("button");
+// btnTest3.textContent = "TEST3";
+// devDiv.appendChild(btnTest3);
 
 let divTarget = document.createElement("divTarget");
 divTarget.className = "animTest";
 divTarget.id = "divTarget";
 divTarget.textContent = "0";
-devDiv.appendChild(divTarget);
+// devDiv.appendChild(divTarget);
 // // makeAsController(btnTest);
 // // btnTest.addControlOutput(nodeModule.frequency, "value");
 // // btnTest.describe();
@@ -30,7 +30,7 @@ inTest.addEventListener("input", e => {
     e.target.defaultControlFunction();
     // console.log(nodeModule.frequency.controlInputs);
 })
-devDiv.prepend(inTest);
+// devDiv.prepend(inTest);
 
 
 ///////////////////////////////////////////////////////
@@ -96,9 +96,9 @@ let monteFreq = anime({
     }
 })
 // console.log("monteFreq", monteFreq);
-btnTest.onclick = monteFreq.play;
-btnTest2.onclick = monteFreq.pause;
-btnTest3.textContent = "log";
+// btnTest.onclick = monteFreq.play;
+// btnTest2.onclick = monteFreq.pause;
+// btnTest3.textContent = "log";
 // btnTest3.onclick = function() {
 //     console.log(monteFreq)
 //     monteFreq.duration = 200;
@@ -107,9 +107,8 @@ btnTest3.textContent = "log";
 //LFO
 let analyser = audioCtx.createAnalyser();
 analyser.connect(audioCtx.destination);
-// let osc = audioCtx.createOscillator();
-// osc.connect(analyser);
-// osc.start();
+analyser.monitor = visu.screen;
+
 nodeModule.audioOutput.disconnect();
 nodeModule.audioOutput.connect(analyser);
 nodeModule.audioOutput.destination = analyser;
@@ -131,7 +130,7 @@ analyser.log = function() {
 }
 analyser.draw = function() {
     analyser.getByteTimeDomainData(analyser.tabData);
-    let c = visu.screen;
+    let c = analyser.monitor;
     let ctx = c.ctx;
     ctx.fillStyle = c.defaultBgColor;
     c.drawScreen();
@@ -167,6 +166,7 @@ analyser.stop = function() {
 
 analyser.intervalId = undefined;
 btnTest3.textContent = "run";
+
 btnTest3.onclick = function() {
     if(this.textContent === "run") {
         this.textContent = "stop";

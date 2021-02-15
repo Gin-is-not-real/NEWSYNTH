@@ -21,8 +21,13 @@ let filterModule = new FilterModule("filterTest", synth1, nodeModule, ["highpass
 filterModule.setPanel(new FilterPanel(filterModule));
 synth1.addModule(filterModule);
 
-let visu = new MonitorModule("monitoTest", synth1);
-visu.setPanel(new VisualiserPanel(visu));
+// let visu = new MonitorModule("monitoTest", synth1);
+// visu.setPanel(new VisualiserPanel2(visu));
+// visu.screen.drawScreen();
+// synth1.domPanel2.appendChild(visu.domPanel);
+console.log("osc", nodeModule.core[1])
+let visu = new OscilloscopeModule("Oscilloscope", synth1, nodeModule.core[1]);
+visu.setPanel(new OscilloscopePanel(visu));
 visu.screen.drawScreen();
 synth1.domPanel2.appendChild(visu.domPanel);
 
