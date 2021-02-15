@@ -34,7 +34,7 @@
 
     margin: 2px;
 }
-.btnOn {
+.btnOn, .roundBtnBypass {
     width: 10px;
     position: absolute;
     right: 0;

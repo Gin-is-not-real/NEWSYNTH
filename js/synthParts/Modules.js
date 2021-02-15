@@ -91,7 +91,6 @@ class OscillatorModule extends NodeModule {
 
         return core;
     }
-
     initModuleParams() {
         this.frequency = this.oscNode.frequency;
         this.type = this.oscNode.type;
@@ -115,7 +114,8 @@ class OscillatorModule extends NodeModule {
 
         osc.defaultDestination = gainNode;
         osc.destination = osc.defaultDestination;
-        osc.connect(osc.destination);
+        // osc.connect(osc.destination);
+        console.log("OSC DEST",osc.destination);
 
         this.defaultDestination = this.synth.generalDestination;
         this.destination = this.defaultDestination;
@@ -126,6 +126,12 @@ class OscillatorModule extends NodeModule {
         gainNode.destination = gainNode.defaultDestination;
         gainNode.connect(gainNode.defaultDestination);
         osc.start();
+    }
+    plug(node) {
+        node.connect(node.destination);
+    }
+    unplug(node) {
+        node.disconnect();
     }
 }
 //////////////////////////////////////////////////////
@@ -170,29 +176,11 @@ class FilterModule extends NodeModule {
         });
         console.log("CONTROLLABLES", this.controllablesParams);
     }
-    // initModuleParams() {
-    //     let filter1 = this.core[0];
-    //     filter1.type = "lowpass";
-    //     filter1.frequency.value = FILTER_DEFAULT_FREQUENCY_VALUE["lowpass"];
 
-    //     this.controllablesParams = [
-    //         {text: "type1", target: filter1, targetedParam: "type"},
-    //         {text: "cutoff1", target: filter1.frequency, targetedParam: "value"},
-    //         {text: "q1", target: this.Q, targetedParam: "value"},
-    //     ];
-    //     console.log("CONTROLLABLES", this.controllablesParams);
-    // }
     initConnections() {
         this.audioInInput = this.moduleInInput.audioOutput;
         this.defaultDestination = this.moduleInInput.destination;
         this.destination = this.defaultDestination;
-
-        // this.core.forEach(f => {
-        //     f.defaultDestination = this.defaultDestination;
-        //     f.destination = f.defaultDestination;
-        //     f.isPlugged = false;
-        // });
-
     }
 
     plug(i) {
@@ -290,29 +278,7 @@ class FilterModule2 extends NodeModule {
         this.audioInput = f1;
         this.audioOutput = f2;
     }
-    initConnections() {
-    }
-    // plug() {
-    //     let f1 = this.core[0];
-    //     let f2 = this.core[1];
-    //     let audioIn = this.moduleInput.audioOutput;
 
-    //     f2.destination = audioIn.destination();
-    //     audioIn.disconnect();
-    //     audioIn.destination = f1;
-    //     audioIn.connect(audioIn.destination);
-    //     f2.connect(f2.destination);
-    // }
-    // unplug() {
-    //     let f1 = this.core[0];
-    //     let f2 = this.core[1];
-    //     let audioIn = this.moduleInput.audioOutput;
-
-    //     audioIn.destination = f2.destination;
-    //     f2.disconnect();
-    //     audioIn.connect(audioIn.destination);
-
-    // }
 
 }
 //////////////////////////////////////////////////////

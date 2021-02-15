@@ -54,7 +54,7 @@
 }
 /* SUBSECTIONS */
 .subDiv {
-    border: var(--border);
+    /* border: var(--border); */
     padding: 2px;
     display: inline;
     font-size: small;

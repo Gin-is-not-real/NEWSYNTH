@@ -466,6 +466,7 @@ class OscilloPanel2 extends ModulePanel {
     }
     initModulePanel(domPanel) {
         let divTitle = roundTitleDiv(this.module);
+        divTitle.appendChild(newRoundTitleBtnBypass(this.module, this.module.oscNode));
 
         let divWaves = this.addNewDiv("div_waves");
         let selectWave = this.addNewComponent(newToggle4Waves(this.module, this.module.oscNode));
@@ -495,18 +496,14 @@ class FilterPanel extends ModulePanel {
         super(module, sections, domPanel);
     }
     initModulePanel(domPanel) {
-        let divTitle = roundTitleDiv(this.module);
-        let tab = [
-            divTitle, 
-        ];      
-        console.log(this.module.core);
+        let tab = [];
         this.module.core.forEach(f => {
             let index = this.module.core.indexOf(f);
 
-            let divFilter = this.addNewDiv("div_type");
-            let btnBypass = this.addNewComponent(newFilterBtnBypass(this.module, index));
-            divFilter.appendChild(btnBypass);
+            let divTitle = roundTitleDiv(this.module, this.module.name + index);
+            divTitle.appendChild(newFilterRoundBtnBypass(this.module, index));
 
+            let divFilter = this.addNewDiv("div_type");
             let selectType = this.addNewComponent(newFilterSelectType(this.module, f));
             divFilter.appendChild(selectType);
 
@@ -523,6 +520,7 @@ class FilterPanel extends ModulePanel {
             divQ.appendChild(rQ);
 
             tab.push(
+                divTitle,
                 divFilter,
                 divCutoff,
                 divQ
@@ -540,7 +538,8 @@ class LfoPanel extends ModulePanel {
     }
     initModulePanel(domPanel) {
         let divTitle = roundTitleDiv(this.module);
-        let btnPlay = this.addNewComponent(lfoNewBtnPlay(this.module));
+        // let btnPlay = this.addNewComponent(lfoNewBtnPlay(this.module));
+        let btnPlay = lfoNewRoundTitleBtnPlay(this.module);
         divTitle.appendChild(btnPlay);
 
         let divDepth = this.addNewDiv("div_depth");

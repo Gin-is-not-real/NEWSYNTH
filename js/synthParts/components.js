@@ -8,13 +8,38 @@ let FILTER_DEFAULT_FREQUENCY_VALUE = {
 };
 /////////////////////////////////////////////////////
 //MODULES
-function roundTitleDiv(module) {
+function roundTitleDiv(module, title) {
     let div = module.modulePanel.addNewDiv("div_title");
     div.className = "divTitle";
-    div.textContent = module.name;
+    div.textContent = title != undefined ? title : module.name;
     return div;
 }
 
+function newRoundTitleBtnBypass(module, node) {
+    let btn = createInput("button", "roundBtnBypass", module.name);
+    btn.value = "off";
+    btn.style.backgroundColor = "red";
+
+    btn.addEventListener("click", (event) => {
+        if(btn.value === "off") {
+            btn.value = "on";
+            // module.plug();
+            node.connect(node.destination);
+        }
+        else {
+            btn.value = "off";
+            // module.unplug();
+            node.disconnect();
+        }
+        btn.updateStyle();
+    });
+
+    btn.updateStyle = function() {
+        btn.style.backgroundColor = btn.value === "on" ? "green" : "red";
+    }
+
+    return btn;
+}
 function testComp() {
     let inTest = createInput("number", "compTest");
     inTest.designation = "inTest";
@@ -49,6 +74,23 @@ function newRFreq(module, osc) {
 //Filter
 function newFilterBtnBypass(module, index) {
     let btnOn = createCommutator("btnOn2", index);
+    btnOn.addEventListener("click", (event) => {
+        let btn = event.target;
+        btn.commutate();
+        let index = parseInt(btn.id.split("_")[1]);
+
+        if(btn.value === "1") {
+            console.log(module, index);
+            module.plug(index);
+        }
+        else if(btn.value === "0") {
+            module.unplug(index);
+        }
+    })
+    return btnOn;
+}
+function newFilterRoundBtnBypass(module, index) {
+    let btnOn = createCommutator("roundBtnBypass", index);
     btnOn.addEventListener("click", (event) => {
         let btn = event.target;
         btn.commutate();
@@ -126,6 +168,21 @@ function lfoNewRDuration(module) {
 }
 function lfoNewBtnPlay(module) {
     let btnOn = createCommutator("btnOn2", module);
+    btnOn.addEventListener("click", (event) => {
+        let btn = event.target;
+        btn.commutate();
+        // let index = parseInt(btn.id.split("_")[1]);
+        if(btn.value === "1") {
+            module.anim.play();
+        }
+        else if(btn.value === "0") {
+            module.anim.pause();
+        }
+    })
+    return btnOn;
+}
+function lfoNewRoundTitleBtnPlay(module) {
+    let btnOn = createCommutator("roundBtnBypass", module);
     btnOn.addEventListener("click", (event) => {
         let btn = event.target;
         btn.commutate();
