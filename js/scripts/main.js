@@ -14,22 +14,15 @@ root.appendChild(synth1.domPanel2);
 let nodeModule = new OscillatorModule("nodeTest", synth1);
 nodeModule.setPanel(new OscilloPanel2(nodeModule));
 synth1.addModule(nodeModule);
-// nodeModule.describe("function");
-// console.log("MAIN", nodeModule.core[0]);
 
-let filterModule = new FilterModule("filterTest", synth1, nodeModule, ["highpass", "notch"]);
+let filterModule = new FilterModule("filterTest", synth1, nodeModule, ["lowpass", "notch"]);
 filterModule.setPanel(new FilterPanel(filterModule));
 synth1.addModule(filterModule);
 
-// let visu = new MonitorModule("monitoTest", synth1);
-// visu.setPanel(new VisualiserPanel2(visu));
-// visu.screen.drawScreen();
-// synth1.domPanel2.appendChild(visu.domPanel);
-console.log("osc", nodeModule.core[1])
 let visu = new OscilloscopeModule("Oscilloscope", synth1, nodeModule.core[1]);
 visu.setPanel(new OscilloscopePanel(visu));
 visu.screen.drawScreen();
-synth1.domPanel2.appendChild(visu.domPanel);
+synth1.addModule(visu, synth1.domPanel2);
 
 let lfo = new Lfo("lfo", synth1, nodeModule.frequency, "value");
 lfo.setPanel(new LfoPanel(lfo));
@@ -38,7 +31,4 @@ visu.screen.enteringY = nodeModule.frequency.controlsList["value"][0];
 lfo.describe("function");
 synth1.domPanel2.prepend(lfo.domPanel);
 
-// let scope = new AnalyserModule2("scope", synth1, nodeModule);
-// scope.setPanel(new VisualiserPanel2(scope));
-// synth1.domPanel2.prepend(scope.domPanel);
 

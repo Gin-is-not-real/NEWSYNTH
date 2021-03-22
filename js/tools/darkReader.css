@@ -1,0 +1,7 @@
+/* DARK READER */
+html, body, input, textarea, select, button {
+    border-color: #736b5e;
+    color: #e8e6e3;
+    background-color: #181a1b;
+    scrollbar-color: #454a4d #202324;
+}
